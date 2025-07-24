@@ -17,7 +17,15 @@ add_executable(SNek main.cpp
         DoubleBuffer.h
         controls.cpp
         controls.h
-        Menu.cpp
-        Menu.h
+        UIAction.h
+        Menu/MenuBase.cpp
+        Menu/MenuBase.h
+        Menu/PauseMenu.cpp
+        Menu/PauseMenu.h
+        Menu/MainMenu.cpp
+        Menu/MainMenu.h
+
+
+
 )
 target_link_libraries(SNek ${CURSES_LIBRARIES})

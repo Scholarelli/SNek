@@ -12,6 +12,6 @@ controls get_user_input() {
         case KEY_RIGHT: case 'd': return controls::MOVE_RIGHT;
         case ' ': case 'p':                 return controls::PAUSE;
         case 'q':                 return controls::QUIT;
-        default:                  return controls::PAUSE; // Caso di default
+        default:                  return controls::PAUSE;
     }
 }

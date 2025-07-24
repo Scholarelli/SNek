@@ -4,19 +4,6 @@
 #include "types.h"
 
 
-void GameWindow::initialize() {
-    initscr();
-    raw();
-    noecho();
-    //nodelay(stdscr, TRUE);
-    timeout(1000);
-    keypad(stdscr, TRUE);
-
-    start_color();
-    init_pair(1, COLOR_GREEN, COLOR_GREEN);
-    init_pair(2, COLOR_RED, COLOR_BLACK);
-    curs_set(0);
-}
 
 void GameWindow::spawn() const {
     buffer_->render(stdscr);
@@ -26,7 +13,7 @@ void GameWindow::draw() {
     updateBuffer();
 }
 
-void GameWindow::render(WINDOW *win) const {
+void GameWindow::render(WINDOW *win) {
 
     buffer_->render(win);
 }
@@ -49,9 +36,15 @@ void GameWindow::setTile(int x, int y) const {
     this->playfield_->setSnakeTile(x, y);
 }
 
-void GameWindow::resize(int x, int y) {
-    buffer_->resize(x, y);
-    playfield_->resize(x ,y);
+void GameWindow::resize(int newWidth, int newHeight) {
+    buffer_->resize(newWidth, newHeight);
+    playfield_->resize(newWidth ,newHeight);
 }
 
+UiAction GameWindow::handleInput(controls input) {
+    return UI_NO_ACTION;
+}
 
+void GameWindow::initializeWindow(WINDOW *parent) {
+
+}

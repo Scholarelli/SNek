@@ -67,8 +67,8 @@ CMAKE_BINARY_DIR = /Users/eslacker/CLionProjects/SNek
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
-	/opt/homebrew/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "No interactive CMake dialog available..."
+	/Users/eslacker/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -201,29 +201,77 @@ GameWindow.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/GameWindow.cpp.s
 .PHONY : GameWindow.cpp.s
 
-Menu.o: Menu.cpp.o
-.PHONY : Menu.o
+Menu/MainMenu.o: Menu/MainMenu.cpp.o
+.PHONY : Menu/MainMenu.o
 
 # target to build an object file
-Menu.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/Menu.cpp.o
-.PHONY : Menu.cpp.o
+Menu/MainMenu.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/Menu/MainMenu.cpp.o
+.PHONY : Menu/MainMenu.cpp.o
 
-Menu.i: Menu.cpp.i
-.PHONY : Menu.i
+Menu/MainMenu.i: Menu/MainMenu.cpp.i
+.PHONY : Menu/MainMenu.i
 
 # target to preprocess a source file
-Menu.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/Menu.cpp.i
-.PHONY : Menu.cpp.i
+Menu/MainMenu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/Menu/MainMenu.cpp.i
+.PHONY : Menu/MainMenu.cpp.i
 
-Menu.s: Menu.cpp.s
-.PHONY : Menu.s
+Menu/MainMenu.s: Menu/MainMenu.cpp.s
+.PHONY : Menu/MainMenu.s
 
 # target to generate assembly for a file
-Menu.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/Menu.cpp.s
-.PHONY : Menu.cpp.s
+Menu/MainMenu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/Menu/MainMenu.cpp.s
+.PHONY : Menu/MainMenu.cpp.s
+
+Menu/MenuBase.o: Menu/MenuBase.cpp.o
+.PHONY : Menu/MenuBase.o
+
+# target to build an object file
+Menu/MenuBase.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/Menu/MenuBase.cpp.o
+.PHONY : Menu/MenuBase.cpp.o
+
+Menu/MenuBase.i: Menu/MenuBase.cpp.i
+.PHONY : Menu/MenuBase.i
+
+# target to preprocess a source file
+Menu/MenuBase.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/Menu/MenuBase.cpp.i
+.PHONY : Menu/MenuBase.cpp.i
+
+Menu/MenuBase.s: Menu/MenuBase.cpp.s
+.PHONY : Menu/MenuBase.s
+
+# target to generate assembly for a file
+Menu/MenuBase.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/Menu/MenuBase.cpp.s
+.PHONY : Menu/MenuBase.cpp.s
+
+Menu/PauseMenu.o: Menu/PauseMenu.cpp.o
+.PHONY : Menu/PauseMenu.o
+
+# target to build an object file
+Menu/PauseMenu.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/Menu/PauseMenu.cpp.o
+.PHONY : Menu/PauseMenu.cpp.o
+
+Menu/PauseMenu.i: Menu/PauseMenu.cpp.i
+.PHONY : Menu/PauseMenu.i
+
+# target to preprocess a source file
+Menu/PauseMenu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/Menu/PauseMenu.cpp.i
+.PHONY : Menu/PauseMenu.cpp.i
+
+Menu/PauseMenu.s: Menu/PauseMenu.cpp.s
+.PHONY : Menu/PauseMenu.s
+
+# target to generate assembly for a file
+Menu/PauseMenu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/Menu/PauseMenu.cpp.s
+.PHONY : Menu/PauseMenu.cpp.s
 
 SnakePlayfield.o: SnakePlayfield.cpp.o
 .PHONY : SnakePlayfield.o
@@ -315,9 +363,15 @@ help:
 	@echo "... GameWindow.o"
 	@echo "... GameWindow.i"
 	@echo "... GameWindow.s"
-	@echo "... Menu.o"
-	@echo "... Menu.i"
-	@echo "... Menu.s"
+	@echo "... Menu/MainMenu.o"
+	@echo "... Menu/MainMenu.i"
+	@echo "... Menu/MainMenu.s"
+	@echo "... Menu/MenuBase.o"
+	@echo "... Menu/MenuBase.i"
+	@echo "... Menu/MenuBase.s"
+	@echo "... Menu/PauseMenu.o"
+	@echo "... Menu/PauseMenu.i"
+	@echo "... Menu/PauseMenu.s"
 	@echo "... SnakePlayfield.o"
 	@echo "... SnakePlayfield.i"
 	@echo "... SnakePlayfield.s"
