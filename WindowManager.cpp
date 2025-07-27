@@ -20,6 +20,28 @@ void WindowManager::initialize() {
     this->focused = this->menu;
 }
 
+void WindowManager::createMenu() {
+    if (gameWindow) {
+        menu = new PauseMenu(screenWidth / 2 - 30/2, screenHeight / 2 - 10/2);
+    } else {
+        menu = new MainMenu(screenWidth / 2 - 30/2, screenHeight / 2 - 10/2);
+    }
+
+
+    if (menu) {
+        menu->initializeWindow(stdscr);
+
+        focused = menu;
+    }
+}
+
+void WindowManager::deleteMenu() {
+    if (!menu) return;
+    delete menu;
+    menu = nullptr;
+    focused = gameWindow;
+
+}
 void WindowManager::initializeNcurses() {
     initscr();
     raw();
@@ -46,8 +68,39 @@ void WindowManager::cleanupNcurses() {
 void WindowManager::run() {
     while (true) {
          render();
-        if (!handleInput()) {
+
+
+        UiAction action = handleInput();
+        if (action == UI_QUIT_GAME && !gameWindow) {
             break;
+        }
+
+        switch (action) {
+            case UI_START_NEW_GAME:
+                if (gameWindow) {
+                    delete gameWindow;
+                }
+                gameWindow = new GameWindow(screenWidth, screenHeight);
+                deleteMenu();
+                break;
+            case UI_REQUEST_PAUSE:
+                createMenu();
+                break;
+            case UI_RESUME_GAME:
+                deleteMenu();
+                break;
+            case UI_QUIT_GAME:
+            case UI_MAIN_MENU:
+                if (gameWindow) {
+                    delete gameWindow;
+                    gameWindow = nullptr;
+                    createMenu();
+                } else {
+                    cleanupNcurses();
+                    return;
+                }
+                break;
+            default: ;
         }
 
         // Control frame rate (50ms = ~20 FPS)
@@ -80,18 +133,17 @@ void WindowManager::resize() {
     }
 }
 
-bool WindowManager::handleInput() {
+UiAction WindowManager::handleInput() {
     controls input = get_user_input();
 
     if (input == QUIT) {
-        return false;
+        return UI_QUIT_GAME;
     }
     if (input == RESIZE) {
         resize();
         render();
-        return true;
+        return UI_NO_ACTION;
     }
 
-    focused->handleInput(input);
-    return true;
+    return focused->handleInput(input);
 }

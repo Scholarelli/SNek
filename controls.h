@@ -6,10 +6,12 @@ enum controls {
     MOVE_DOWN,
     MOVE_LEFT,
     MOVE_RIGHT,
+    MOVE_ENTER,
     PAUSE,
     QUIT,
     NO_INPUT,
-    RESIZE
+    RESIZE,
+    FREEZE
 };
 
 

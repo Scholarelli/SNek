@@ -16,7 +16,12 @@ public:
     MenuBase(int x, int y, int width, int height) : UiWindow(x, y, width, height) {
         winPointer = nullptr;
     }
-    ~MenuBase() override = default;
+    ~MenuBase() override {
+        if (winPointer) {
+            wclear(winPointer);
+            delwin(winPointer);
+        }
+    }
     void render(WINDOW* win) override;
     UiAction handleInput(controls input) override;
     void initializeWindow(WINDOW *parent) override;

@@ -23,6 +23,11 @@ public:
           buffer_(std::make_unique<DoubleBuffer>(width, height)) {
     }
 
+    ~GameWindow() override {
+        clear();
+        refresh();
+    };
+
     void setTile(int x, int y) const;
     void resize(int newWidth, int newHeight) override;
 

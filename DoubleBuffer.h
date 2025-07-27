@@ -12,6 +12,10 @@ private:
 public:
     DoubleBuffer(int w, int h) : frontBuffer(new Buffer(w, h)), backBuffer(new Buffer(w, h)) {}
 
+    ~DoubleBuffer() {
+        delete frontBuffer;
+        delete backBuffer;
+    }
     void setTile(int x, int y, char ch, int color = 0, bool bold = false) const;
     void resize(int x, int y);
     void render(WINDOW *win);

@@ -22,6 +22,11 @@ public:
 
 
     void initialize();
+
+    void createMenu();
+
+    void deleteMenu();
+
     void resize();
     void run();
 
@@ -29,7 +34,7 @@ public:
 
     // Main loop methods
     void render();
-    bool handleInput();
+    UiAction handleInput();
 
     static void initializeNcurses();
 

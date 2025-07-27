@@ -30,6 +30,8 @@ private:
 public:
     Buffer(int w, int h) : width(w), height(h), grid((w * h), {' ', 0, false}) {}
 
+    ~Buffer() = default;
+
     const Tile& operator()(const int x, const int y) const { return grid[index(x, y)]; }
     Tile &operator()(const int x, const int y) { return grid[index(x, y)]; }
 

@@ -30,6 +30,7 @@ void MenuBase::render(WINDOW *win) {
         }
     }
 
+
     wrefresh(win);
 }
 
@@ -67,14 +68,27 @@ void MenuBase::reset() {
 
 void MenuBase::recenter(int screenWidth, int screenHeight) {
     this->x = screenWidth / 2 - this->width / 2;
-    this->y = screenHeight / 2 - this->height /2 ;
+    this->y = screenHeight / 2 - this->height / 2;
 
-    werase(winPointer);
-    wsyncup(winPointer);
-    wrefresh(winPointer);
-    mvwin(winPointer, y, x);
 
-    refresh();
+    if (winPointer) {
+        // Clear the screen first
+        clear();
+        refresh();
+
+        // Delete the old window completely
+        delwin(winPointer);
+
+
+    }
+    winPointer = subwin(stdscr, height, width, y, x);
+
+    if (winPointer) {
+        // Redraw the window content
+        box(winPointer, 0, 0);
+        wrefresh(winPointer);
+    }
+
 }
 
 void MenuBase::resize(int width, int height) {

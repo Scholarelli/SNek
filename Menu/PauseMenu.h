@@ -10,7 +10,7 @@
 
 class PauseMenu : public MenuBase {
 public:
-    PauseMenu(int x, int y, int width, int height)
+    PauseMenu(int x, int y, int width = 30, int height = 10)
             : MenuBase(x, y, width ,height) {
         entriesNum = 3;
     }
@@ -25,8 +25,8 @@ public:
         return 3;  // Number of menu items
     }
 
-    UiAction getSelectedAction() const;
     UiAction getActionForIndex() override;
+    void resize(int width, int height) override;
 private:
     static constexpr const char* entries[3] = {
         "Resume Game",

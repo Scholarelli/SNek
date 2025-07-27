@@ -16,6 +16,8 @@ void GameWindow::draw() {
 void GameWindow::render(WINDOW *win) {
 
     buffer_->render(win);
+    wprintw(win, "GAME RENDERED");
+
 }
 
 void GameWindow::updateBuffer() const {
@@ -42,7 +44,13 @@ void GameWindow::resize(int newWidth, int newHeight) {
 }
 
 UiAction GameWindow::handleInput(controls input) {
-    return UI_NO_ACTION;
+    switch (input) {
+        case FREEZE: return UI_PAUSE_GAME;
+        case PAUSE: return UI_REQUEST_PAUSE;
+        case QUIT: return UI_QUIT_GAME;
+        default: return UI_NO_ACTION;
+    }
+
 }
 
 void GameWindow::initializeWindow(WINDOW *parent) {

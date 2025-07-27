@@ -13,6 +13,7 @@ void DoubleBuffer::swapBuffer() {
 
 
 void DoubleBuffer::render(WINDOW *win) {
+    wclear(win);
     backBuffer->render(win, *frontBuffer);
     swapBuffer();
 }

@@ -11,8 +11,9 @@ controls get_user_input() {
         case KEY_LEFT:  case 'a': return controls::MOVE_LEFT;
         case KEY_RIGHT: case 'd': return controls::MOVE_RIGHT;
         case KEY_RESIZE: return controls::RESIZE;
-        case ' ': case 'p':                 return controls::PAUSE;
+        case ' ': case 'p': case 10:  return controls::PAUSE;
+        case 'f': return controls::FREEZE;
         case 'q':                 return controls::QUIT;
-        default:                  return controls::PAUSE;
+        default:                  return controls::NO_INPUT;
     }
 }
