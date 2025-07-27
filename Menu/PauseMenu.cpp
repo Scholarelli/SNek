@@ -4,7 +4,7 @@
 
 #include "PauseMenu.h"
 void PauseMenu::render(WINDOW *win) {
-
+    MenuBase::render(win);
 }
 
 UiAction PauseMenu::getActionForIndex() {

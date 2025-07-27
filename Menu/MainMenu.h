@@ -10,13 +10,16 @@
 
 class MainMenu : public MenuBase {
 public:
-    MainMenu(int x, int y, int width, int height)
+    MainMenu(int x, int y, int width = 30, int height = 10)
         : MenuBase(x, y, width ,height) {
         entriesNum = 3;
     }
 
     void render(WINDOW* win) override;
     UiAction getActionForIndex() override;
+
+    void resize(int width, int height);
+
 protected:
 
     const char* const* getEntries() const override {

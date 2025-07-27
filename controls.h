@@ -7,7 +7,9 @@ enum controls {
     MOVE_LEFT,
     MOVE_RIGHT,
     PAUSE,
-    QUIT
+    QUIT,
+    NO_INPUT,
+    RESIZE
 };
 
 

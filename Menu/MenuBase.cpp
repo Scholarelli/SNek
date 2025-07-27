@@ -7,17 +7,19 @@
 #include <cstring>
 
 void MenuBase::render(WINDOW *win) {
-    wclear(win);  // Clear the window first
-    box(win, 0, 0);  // Draw border
+    wclear(win);
+    box(win, 0, 0);
 
-    mvwprintw(win, 1, width/2 - 4, "SNek Game");  // Move title down from line 0
+    mvwprintw(win, 1, width/2 - 4, "SNek Game");
 
     const char *const*entries = getEntries();
     int numEntries = getEntriesCount();
 
-    for (int i = 0; i < numEntries; ++i) {  // Use int instead of size_t
-        int entryY = 3 + i;  // Start from line 3 to avoid border
+    for (int i = 0; i < numEntries; ++i) {
+        int entryY = 3 + i;
         int entryX = (width - strlen(entries[i])) / 2;
+        if (entryX < 0)
+            entryX = 0;
 
         if (i == selectedIndex) {
             wattron(win, A_REVERSE);
@@ -26,11 +28,6 @@ void MenuBase::render(WINDOW *win) {
         } else {
             mvwprintw(win, entryY, entryX, "%s", entries[i]);
         }
-    }
-
-    if (height > 6) {  // Only show instructions if window is big enough
-        mvwprintw(win, height - 3, width/2 - 12, "Use Arrow Keys to Navigate");
-        mvwprintw(win, height - 2, width/2 - 8, "Press Enter to Select");
     }
 
     wrefresh(win);
@@ -68,9 +65,22 @@ void MenuBase::reset() {
     selectedIndex = 0;
 }
 
+void MenuBase::recenter(int screenWidth, int screenHeight) {
+    this->x = screenWidth / 2 - this->width / 2;
+    this->y = screenHeight / 2 - this->height /2 ;
+
+    werase(winPointer);
+    wsyncup(winPointer);
+    wrefresh(winPointer);
+    mvwin(winPointer, y, x);
+
+    refresh();
+}
+
 void MenuBase::resize(int width, int height) {
     return;
 }
+
 
 UiAction MenuBase::handleInput(controls input) {
     switch (input) {

@@ -297,6 +297,30 @@ SnakePlayfield.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/SnakePlayfield.cpp.s
 .PHONY : SnakePlayfield.cpp.s
 
+WindowManager.o: WindowManager.cpp.o
+.PHONY : WindowManager.o
+
+# target to build an object file
+WindowManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/WindowManager.cpp.o
+.PHONY : WindowManager.cpp.o
+
+WindowManager.i: WindowManager.cpp.i
+.PHONY : WindowManager.i
+
+# target to preprocess a source file
+WindowManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/WindowManager.cpp.i
+.PHONY : WindowManager.cpp.i
+
+WindowManager.s: WindowManager.cpp.s
+.PHONY : WindowManager.s
+
+# target to generate assembly for a file
+WindowManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/WindowManager.cpp.s
+.PHONY : WindowManager.cpp.s
+
 controls.o: controls.cpp.o
 .PHONY : controls.o
 
@@ -375,6 +399,9 @@ help:
 	@echo "... SnakePlayfield.o"
 	@echo "... SnakePlayfield.i"
 	@echo "... SnakePlayfield.s"
+	@echo "... WindowManager.o"
+	@echo "... WindowManager.i"
+	@echo "... WindowManager.s"
 	@echo "... controls.o"
 	@echo "... controls.i"
 	@echo "... controls.s"

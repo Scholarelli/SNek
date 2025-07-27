@@ -24,6 +24,8 @@ add_executable(SNek main.cpp
         Menu/PauseMenu.h
         Menu/MainMenu.cpp
         Menu/MainMenu.h
+        WindowManager.cpp
+        WindowManager.h
 
 
 

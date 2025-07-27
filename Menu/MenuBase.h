@@ -20,6 +20,9 @@ public:
     void render(WINDOW* win) override;
     UiAction handleInput(controls input) override;
     void initializeWindow(WINDOW *parent) override;
+    void recenter(int x, int y);
+
+    void resize(int width, int height) override = 0;
 protected:
     int selectedIndex = 0;
     int entriesNum = 0;
@@ -32,7 +35,6 @@ protected:
 
     virtual UiAction getActionForIndex() = 0;
     void reset();
-    void resize(int width, int height) override;
 };
 
 #endif //MENUBASE_H
