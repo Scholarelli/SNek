@@ -26,8 +26,10 @@ add_executable(SNek main.cpp
         Menu/MainMenu.h
         WindowManager.cpp
         WindowManager.h
-
+        SnakeMovement.h
+        SnakeMovement.cpp
 
 
 )
-target_link_libraries(SNek ${CURSES_LIBRARIES})
+#target_link_libraries(SNek ${CURSES_LIBRARIES})
+target_link_libraries(SNek ${CURSES_LIBRARIES} tinfo)

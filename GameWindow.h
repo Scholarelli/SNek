@@ -9,6 +9,7 @@
 #include "Buffer.h"
 #include "DoubleBuffer.h"
 #include "UiWindow.h"
+#include <memory>
 
 class GameWindow : public UiWindow {
 private:

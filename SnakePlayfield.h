@@ -5,7 +5,7 @@
 
 class SnakePlayfield {
 private:
-    int width, height;
+    int width, height, foodX, foodY;
     std::vector<bool> tiles; // Represents snake presence on the grid
 
 public:
@@ -13,6 +13,8 @@ public:
 
     void resize(int newWidth, int newHeight);
     void update(const std::vector<bool>& newTiles);
+
+    void spawnFood();
 
     bool isSnakeAt(int x, int y) const;
     bool isFoodAt(int x, int y) const;

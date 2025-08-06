@@ -1,9 +1,11 @@
 
-#include "GameState.h"
+//#include "GameState.h"
 #include "Menu/MainMenu.h"
 #include "Menu/PauseMenu.h"
 #include "GameWindow.h"
 #include "controls.h"
+#include "SnakeMovement.h"
+
 #include <ncurses.h>
 #ifndef WINDOWMANAGER_H
 #define WINDOWMANAGER_H

@@ -1,5 +1,7 @@
 #include <iostream>
 #include <ncurses.h>
+#include <ctime>
+#include <cstdlib>
 
 #include "controls.h"
 #include "GameWindow.h"
@@ -9,6 +11,7 @@
 
 int main() {
 	auto windowmanager = new WindowManager(0, 0);
+	std::srand(std::time(nullptr));
 	windowmanager->initialize();
 	windowmanager->run();
 
