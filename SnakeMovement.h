@@ -5,6 +5,8 @@
 #ifndef SNAKEMOVEMENT_H
 #define SNAKEMOVEMENT_H
 
+#include "SnakePlayfield.h"
+
 #include <deque>
 #include <utility>
 
@@ -14,16 +16,16 @@ private:
 
     int width, height, moveX, moveY;
     std::deque<std::pair<int, int>> snake;
-    bool food = false;
+
+    SnakePlayfield& playfield;
 
 public:
 
-    SnakeMovement(int width, int height);
+    SnakeMovement(int width, int height, SnakePlayfield& playfield);
 
     std::deque<std::pair<int, int>> getSnake();
     void direction(int x, int y);
     void step();
-    void grow();
 
 };
 

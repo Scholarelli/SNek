@@ -4,7 +4,8 @@
 #include "SnakePlayfield.h"
 
 SnakePlayfield::SnakePlayfield(int width, int height)
-    : width(width), height(height), foodX(-1), foodY(-1), tiles(width * height, false) {}
+    : width(width), height(height), foodX(-1), foodY(-1), tiles(width * height, false) {
+}
 
 void SnakePlayfield::resize(int newWidth, int newHeight) {
     width = newWidth;
@@ -38,5 +39,6 @@ bool SnakePlayfield::isFoodAt(int x, int y) const {
 }
 
 void SnakePlayfield::setSnakeTile(int x, int y) {
-    tiles[y * width + x] = !tiles[y * width + x];
+    //tiles[y * width + x] = !tiles[y * width + x];
+    tiles[y * width + x] = true;
 }
