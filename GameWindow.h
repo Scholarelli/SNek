@@ -11,17 +11,21 @@
 #include "UiWindow.h"
 #include <memory>
 
+#include "SnakeMovement.h"
+
 class GameWindow : public UiWindow {
 private:
     std::unique_ptr<SnakePlayfield> playfield_;
     std::unique_ptr<DoubleBuffer> buffer_;
-
+    std::unique_ptr<SnakeMovement> snake;
     void updateBuffer() const;
+
 public:
     GameWindow(int width, int height)
         : UiWindow(0, 0, width, height),
           playfield_(std::make_unique<SnakePlayfield>(width, height)),
-          buffer_(std::make_unique<DoubleBuffer>(width, height)) {
+          buffer_(std::make_unique<DoubleBuffer>(width, height)),
+          snake(std::make_unique<SnakeMovement> (width, height, *playfield_) ) {
     }
 
     ~GameWindow() override {
@@ -38,6 +42,7 @@ public:
     void render(WINDOW *win) override;
     UiAction handleInput(controls input) override;
     void initializeWindow(WINDOW *parent) override;
+    void update();
 
 };
 

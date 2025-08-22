@@ -1,4 +1,5 @@
 #include "WindowManager.h"
+#include "SnakeMovement.h"
 #include <ncurses.h>
 #include <unistd.h> // for usleep
 
@@ -67,6 +68,7 @@ void WindowManager::cleanupNcurses() {
 
 void WindowManager::run() {
     while (true) {
+        if (gameWindow) gameWindow->update();
          render();
 
 

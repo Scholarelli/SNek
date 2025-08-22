@@ -3,7 +3,6 @@
 //
 #include "SnakeMovement.h"
 
-#include "types.h"
 
 SnakeMovement::SnakeMovement(int width, int height, SnakePlayfield& playfield_)
     : width(width), height(height), moveX(1), moveY(0), playfield(playfield_) {

@@ -7,26 +7,25 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(SNek main.cpp
         GameWindow.cpp
-        GameWindow.h
-        types.h
+
         SnakePlayfield.cpp
-        SnakePlayfield.h
+
         Buffer.cpp
-        Buffer.h
+
         DoubleBuffer.cpp
-        DoubleBuffer.h
+
         controls.cpp
-        controls.h
-        UIAction.h
+
+
         Menu/MenuBase.cpp
-        Menu/MenuBase.h
+
         Menu/PauseMenu.cpp
-        Menu/PauseMenu.h
+
         Menu/MainMenu.cpp
-        Menu/MainMenu.h
+
         WindowManager.cpp
-        WindowManager.h
-        SnakeMovement.h
+
+
         SnakeMovement.cpp
 
 
