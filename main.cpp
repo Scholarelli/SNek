@@ -15,6 +15,7 @@ int main() {
 	windowmanager->initialize();
 	windowmanager->run();
 
+
 	endwin();
 	return 0;
 }

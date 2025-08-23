@@ -14,8 +14,7 @@ void GameWindow::draw() {
 }
 
 void GameWindow::render(WINDOW *win) {
-
-    buffer_->render(win);
+     buffer_->render(win);
     //wprintw(win, "GAME RENDERED");
 
 }

@@ -68,8 +68,7 @@ void WindowManager::cleanupNcurses() {
 
 void WindowManager::run() {
     while (true) {
-        if (gameWindow) gameWindow->update();
-         render();
+        render();
 
 
         UiAction action = handleInput();
@@ -78,6 +77,10 @@ void WindowManager::run() {
         }
 
         switch (action) {
+            case UI_NO_ACTION:
+                if (menu == nullptr && gameWindow)
+                    gameWindow->update();
+                break;
             case UI_START_NEW_GAME:
                 if (gameWindow) {
                     delete gameWindow;
@@ -115,15 +118,15 @@ void WindowManager::run() {
 
 void WindowManager::render() {
 
+    if (menu) {
+        menu->render(menu->winPointer);
+
+    }
 
     if (gameWindow) {
         gameWindow->render(stdscr);
     }
 
-    if (menu) {
-        menu->render(menu->winPointer);
-
-    }
 
     refresh();
 }
