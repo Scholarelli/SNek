@@ -17,4 +17,3 @@ enum controls {
 
 controls get_user_input();
 #endif //CONTROLS_H
-

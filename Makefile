@@ -273,6 +273,30 @@ Menu/PauseMenu.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/Menu/PauseMenu.cpp.s
 .PHONY : Menu/PauseMenu.cpp.s
 
+SnakeMovement.o: SnakeMovement.cpp.o
+.PHONY : SnakeMovement.o
+
+# target to build an object file
+SnakeMovement.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/SnakeMovement.cpp.o
+.PHONY : SnakeMovement.cpp.o
+
+SnakeMovement.i: SnakeMovement.cpp.i
+.PHONY : SnakeMovement.i
+
+# target to preprocess a source file
+SnakeMovement.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/SnakeMovement.cpp.i
+.PHONY : SnakeMovement.cpp.i
+
+SnakeMovement.s: SnakeMovement.cpp.s
+.PHONY : SnakeMovement.s
+
+# target to generate assembly for a file
+SnakeMovement.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/SnakeMovement.cpp.s
+.PHONY : SnakeMovement.cpp.s
+
 SnakePlayfield.o: SnakePlayfield.cpp.o
 .PHONY : SnakePlayfield.o
 
@@ -396,6 +420,9 @@ help:
 	@echo "... Menu/PauseMenu.o"
 	@echo "... Menu/PauseMenu.i"
 	@echo "... Menu/PauseMenu.s"
+	@echo "... SnakeMovement.o"
+	@echo "... SnakeMovement.i"
+	@echo "... SnakeMovement.s"
 	@echo "... SnakePlayfield.o"
 	@echo "... SnakePlayfield.i"
 	@echo "... SnakePlayfield.s"

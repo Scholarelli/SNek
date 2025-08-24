@@ -21,6 +21,7 @@ public:
         return entries;
     }
 
+
     int getEntriesCount() const override {
         return 3;  // Number of menu items
     }
