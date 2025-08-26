@@ -25,7 +25,7 @@ public:
         : UiWindow(0, 0, width, height),
           playfield_(std::make_unique<SnakePlayfield>(width, height)),
           buffer_(std::make_unique<DoubleBuffer>(width, height)),
-          snake(std::make_unique<SnakeMovement> (width, height, *playfield_) ) {
+          snake(std::make_unique<SnakeMovement> (*playfield_) ){
     }
 
     ~GameWindow() override {
@@ -33,7 +33,7 @@ public:
         refresh();
     };
 
-    void setTile(int x, int y) const;
+   // void setTile(int x, int y) const;
     void resize(int newWidth, int newHeight) override;
 
 

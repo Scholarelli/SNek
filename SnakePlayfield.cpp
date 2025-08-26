@@ -4,20 +4,25 @@
 #include "SnakePlayfield.h"
 
 SnakePlayfield::SnakePlayfield(int width, int height)
-    : width(width), height(height), foodX(-1), foodY(-1), tiles(width * height, false) {
+    : width(width), height(height), foodX(-1), foodY(-1){
+    campo = new bool[width * height];
+    clear();
 }
+
+
+SnakePlayfield::~SnakePlayfield() {
+    delete[] campo;
+}
+
 
 void SnakePlayfield::resize(int newWidth, int newHeight) {
+    delete[] campo;
     width = newWidth;
     height = newHeight;
-    tiles.resize(width * height, false); // Reset grid
+    campo = new bool[width * height];
+    clear();
 }
 
-void SnakePlayfield::update(const std::vector<bool>& newTiles) {
-    if (newTiles.size() == tiles.size()) {
-        tiles = newTiles;
-    }
-}
 
 void SnakePlayfield::spawnFood() {
     int x, y;
@@ -30,15 +35,8 @@ void SnakePlayfield::spawnFood() {
     foodY = y;
 }
 
-bool SnakePlayfield::isSnakeAt(int x, int y) const {
-    return tiles[y * width + x]; // Check if tile contains part of the snake
-}
-
-bool SnakePlayfield::isFoodAt(int x, int y) const {
-    return (foodX == x && foodY == y);
-}
-
-void SnakePlayfield::setSnakeTile(int x, int y) {
-    //tiles[y * width + x] = !tiles[y * width + x];
-    tiles[y * width + x] = true;
+void SnakePlayfield::clear() {
+    for (int i = 0; i < width * height; i++) {
+        campo[i] = false;
+    }
 }

@@ -4,7 +4,6 @@
 #include "types.h"
 
 
-
 void GameWindow::spawn() const {
     buffer_->render(stdscr);
 }
@@ -14,6 +13,7 @@ void GameWindow::draw() {
 }
 
 void GameWindow::render(WINDOW *win) {
+
      buffer_->render(win);
     //wprintw(win, "GAME RENDERED");
 
@@ -33,9 +33,9 @@ void GameWindow::updateBuffer() const {
     }
 }
 
-void GameWindow::setTile(int x, int y) const {
-    this->playfield_->setSnakeTile(x, y);
-}
+//void GameWindow::setTile(int x, int y) const {
+//    this->playfield_->setSnakeTile(x, y);
+//}
 
 void GameWindow::resize(int newWidth, int newHeight) {
     buffer_->resize(newWidth, newHeight);

@@ -5,8 +5,6 @@
     #ifndef SNAKEMOVEMENT_H
     #define SNAKEMOVEMENT_H
 
-   // #include <deque>
-    //#include <utility>
 
     #include "SnakePlayfield.h"
     struct XYposition {
@@ -16,8 +14,7 @@
     class SnakeMovement {
     private:
 
-        int width, height, moveX, moveY;
-        //std::deque<std::pair<int, int>> snake;
+        int moveX, moveY;
         static const int maxLength = 500;
         int snakeLength;
         XYposition snake[maxLength];
@@ -25,15 +22,9 @@
 
     public:
 
-        SnakeMovement(int width, int height, SnakePlayfield& playfield);
-
-        //std::deque<std::pair<int, int>> getSnake();
+        SnakeMovement(SnakePlayfield& playfield);
         void direction(int x, int y);
         void step();
-        int getLength() {
-            return snakeLength;
-        }
-        XYposition getSnake(int x, int y);
 
     };
 
