@@ -23,9 +23,11 @@ private:
 public:
     GameWindow(int width, int height)
         : UiWindow(0, 0, width, height),
-          playfield_(std::make_unique<SnakePlayfield>(width, height)),
-          buffer_(std::make_unique<DoubleBuffer>(width, height)),
+          playfield_(std::make_unique<SnakePlayfield>(width -3 , height -3)),
+          buffer_(std::make_unique<DoubleBuffer>(width -3, height -3)),
           snake(std::make_unique<SnakeMovement> (*playfield_) ){
+
+        winPointer = newwin(height -1, width -1, 0, 0);
     }
 
     ~GameWindow() override {

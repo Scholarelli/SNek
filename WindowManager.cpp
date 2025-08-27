@@ -22,15 +22,17 @@ void WindowManager::initialize() {
 }
 
 void WindowManager::createMenu() {
+    WINDOW* chosenWindow = stdscr;
     if (gameWindow) {
         menu = new PauseMenu(screenWidth / 2 - 30/2, screenHeight / 2 - 10/2);
+        chosenWindow = gameWindow->winPointer;
     } else {
         menu = new MainMenu(screenWidth / 2 - 30/2, screenHeight / 2 - 10/2);
     }
 
 
     if (menu) {
-        menu->initializeWindow(stdscr);
+        menu->initializeWindow(chosenWindow);
 
         focused = menu;
     }
@@ -78,8 +80,11 @@ void WindowManager::run() {
 
         switch (action) {
             case UI_NO_ACTION:
-                if (menu == nullptr && gameWindow)
+                if (menu == nullptr && gameWindow) {
                     gameWindow->update();
+                } else if (menu != nullptr && gameWindow) {
+                    gameWindow->draw();
+                }
                 break;
             case UI_START_NEW_GAME:
                 if (gameWindow) {
@@ -118,15 +123,15 @@ void WindowManager::run() {
 
 void WindowManager::render() {
 
+
+    if (gameWindow) {
+        gameWindow->render(gameWindow->winPointer);
+    }
+
     if (menu) {
         menu->render(menu->winPointer);
 
     }
-
-    if (gameWindow) {
-        gameWindow->render(stdscr);
-    }
-
 
     refresh();
 }

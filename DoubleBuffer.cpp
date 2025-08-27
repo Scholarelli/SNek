@@ -8,7 +8,6 @@ void DoubleBuffer::setTile(int x, int y, char ch, int color, bool bold) const {
 
 void DoubleBuffer::swapBuffer() {
     std::swap(frontBuffer, backBuffer);
-    backBuffer->clear();
 }
 
 
@@ -22,4 +21,3 @@ void DoubleBuffer::resize(int x, int y) {
     backBuffer->resize(x, y);
 
 }
-

@@ -11,10 +11,11 @@ Tile Buffer::getTile(int x, int y) const {
 }
 
 void Buffer::render(WINDOW *win, const Buffer &prevBuffer) const {
+    box(win, 0, 0);
     for (int i = 0; i < width * height; i++) {
         if (grid[i] != prevBuffer.grid[i]) {
-            const int x = i % width;
-            const int y = i / width;
+            const int x = i % width + 1;
+            const int y = i / width + 1;
             const auto&[ch, color, bold] = grid[i];
 
             attr_t attributes = COLOR_PAIR(color);
