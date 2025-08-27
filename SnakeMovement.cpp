@@ -5,21 +5,20 @@
 #include "UIAction.h"
 
 SnakeMovement::SnakeMovement(SnakePlayfield& playfield_)
-    : moveX(1), moveY(0), playfield(playfield_), snakeLength(4) {
+    : moveX(1), moveY(0), playfield(playfield_), snakeLength(5) {
 
     int X = playfield.getWidth() / 2;
     int Y = playfield.getHeight() / 2;
 
-    snake[0] = {X, Y};
-    snake[1] = {X-1, Y};
-    snake[2] = {X-2, Y};
-    snake[3] = {X-3, Y};
+    for (int i = 0; i < snakeLength; i++) {
+        snake[i] = {X-i, Y};
+
+    }
 
     playfield.clear();
-    playfield.setSnakeTile(X, Y);
-    playfield.setSnakeTile(X-1, Y);
-    playfield.setSnakeTile(X-2, Y);
-    playfield.setSnakeTile(X-3, Y);
+    for (int i = 0; i < snakeLength; i++) {
+        playfield.toggleSnakeTile(X-i, Y);
+    }
     playfield.spawnFood();
 }
 
@@ -39,28 +38,29 @@ void SnakeMovement::step() {
            return;
        }
    }
-    //movimento
+
+    // Togliamo la coda prima di muoverci
+   bool growing = playfield.isFoodAt(newX, newY);
+    if (/*!growing && */snakeLength > 0) {
+        int tailX = snake[snakeLength - 1].x;
+        int tailY = snake[snakeLength - 1].y;
+        playfield.toggleSnakeTile(tailX, tailY);
+    }
+
     for (int i = snakeLength - 1; i > 0; i--) {
         snake[i] = snake[i - 1];
     }
-
-
     snake[0].x = newX;
     snake[0].y = newY;
 
-    if (playfield.isFoodAt(newX, newY)) {
+    playfield.toggleSnakeTile(newX, newY);
+
+    if (growing) {
         playfield.spawnFood();
-        snakeLength++;
-        if (snakeLength > maxLength) {
-            snakeLength = maxLength;
-        }
-    }
-
-    playfield.clear();
-
-    for (int i = 0; i < snakeLength; i++) {
-        playfield.setSnakeTile(snake[i].x, snake[i].y);
+        //snakeLength++;
+        // if (snakeLength > maxLength) {
+        //     snakeLength = maxLength;
+        // }
     }
 
 }
-

@@ -25,8 +25,8 @@ public:
     int getWidth() const { return width; }
     int getHeight() const { return height; }
 
-    void setSnakeTile(int x, int y) {
-        campo[y * width + x] = true;
+    void toggleSnakeTile(int x, int y) {
+        campo[y * width + x] = !campo[y * width + x];
     };
     void clear();
 };
