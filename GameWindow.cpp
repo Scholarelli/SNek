@@ -1,7 +1,9 @@
 #include "GameWindow.h"
-#include <ncurses.h>
-
+#include "Levels.h"
 #include "types.h"
+#include <ncurses.h>
+#include <ctime>
+
 
 
 void GameWindow::spawn() const {

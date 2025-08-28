@@ -4,8 +4,8 @@
 #include "SnakeMovement.h"
 #include "UIAction.h"
 
-SnakeMovement::SnakeMovement(SnakePlayfield& playfield_)
-    : moveX(1), moveY(0), playfield(playfield_), snakeLength(5) {
+SnakeMovement::SnakeMovement(SnakePlayfield& playfield_, int levelLength)
+    : moveX(1), moveY(0), playfield(playfield_), snakeLength(levelLength) {
 
     int X = playfield.getWidth() / 2;
     int Y = playfield.getHeight() / 2;
@@ -33,7 +33,7 @@ void SnakeMovement::step() {
     int newY = (snake[0].y + moveY + playfield.getHeight()) % playfield.getHeight();
 
     //collisione, nuova pos è uguale a pezzo di snake
-   for (int i = 0; i < snakeLength - 1; i++) {
+   for (int i = 0; i < snakeLength; i++) {
        if (snake[i].x == newX && snake[i].y == newY) {
            return;
        }
@@ -57,10 +57,6 @@ void SnakeMovement::step() {
 
     if (growing) {
         playfield.spawnFood();
-        //snakeLength++;
-        // if (snakeLength > maxLength) {
-        //     snakeLength = maxLength;
-        // }
     }
 
 }

@@ -4,20 +4,22 @@
 
 #ifndef GAMEWINDOW_H
 #define GAMEWINDOW_H
-#include "SnakePlayfield.h"
 
+#include "SnakePlayfield.h"
 #include "Buffer.h"
 #include "DoubleBuffer.h"
 #include "UiWindow.h"
-#include <memory>
-
 #include "SnakeMovement.h"
+#include "Levels.h"
+#include <memory>
 
 class GameWindow : public UiWindow {
 private:
     std::unique_ptr<SnakePlayfield> playfield_;
     std::unique_ptr<DoubleBuffer> buffer_;
     std::unique_ptr<SnakeMovement> snake;
+    Levels levels;
+    int score;
     void updateBuffer() const;
 
 public:
@@ -25,7 +27,10 @@ public:
         : UiWindow(0, 0, width, height),
           playfield_(std::make_unique<SnakePlayfield>(width -3 , height -3)),
           buffer_(std::make_unique<DoubleBuffer>(width -3, height -3)),
-          snake(std::make_unique<SnakeMovement> (*playfield_) ){
+          score(0) {
+
+        levels.addLevel(1, 0, 10, 5, 5, 100);
+        snake = std::make_unique<SnakeMovement>(*playfield_, levels.getSnakeLength());
 
         winPointer = newwin(height -1, width -1, 0, 0);
     }

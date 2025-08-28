@@ -7,6 +7,7 @@
 
 
     #include "SnakePlayfield.h"
+
     struct XYposition {
         int x, y;
     };
@@ -22,7 +23,7 @@
 
     public:
 
-        SnakeMovement(SnakePlayfield& playfield);
+        SnakeMovement(SnakePlayfield& playfield, int levelLength);
         void direction(int x, int y);
         void step();
 

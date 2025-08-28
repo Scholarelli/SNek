@@ -38,6 +38,9 @@ public:
     int getSnakeSpeed() { return current ? current->snakeSpeed : 1; }
     int getBonus() { return current ? current->bonus : 0; }
     int getTimeBonus() { return current ? current->timeBonus : 0; }
+
+    //void addTime();
+
 };
 
 
