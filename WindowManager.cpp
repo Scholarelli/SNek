@@ -2,7 +2,7 @@
 #include "SnakeMovement.h"
 #include <ncurses.h>
 #include <unistd.h> // for usleep
-
+#include <cstring>
 WindowManager::WindowManager(int width, int height)
     : screenWidth(width), screenHeight(height), gameWindow(nullptr) {
 }
