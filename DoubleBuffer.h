@@ -18,7 +18,7 @@ public:
     }
     void setTile(int x, int y, char ch, int color = 0, bool bold = false) const;
     void resize(int x, int y);
-    void render(WINDOW *win);
+    void render(WINDOW *win, bool renderAll = false);
 
 
 };

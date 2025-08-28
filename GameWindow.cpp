@@ -13,10 +13,13 @@ void GameWindow::draw() {
 }
 
 void GameWindow::render(WINDOW *win) {
-
      buffer_->render(win);
     //wprintw(win, "GAME RENDERED");
+}
 
+void GameWindow::renderFull(WINDOW *win) {
+    updateBuffer();
+    buffer_->render(win, true);
 }
 
 void GameWindow::updateBuffer() const {

@@ -163,8 +163,16 @@ void WindowManager::render() {
 void WindowManager::resize() {
 
     getmaxyx(stdscr, screenHeight, screenWidth);
+
+    bool wasBlocked = resizeBlocked;
     if (gameWindow)
         resizeBlocked = screenHeight != gameHeight || screenWidth != gameWidth;
+    if (wasBlocked && !resizeBlocked && gameWindow) {
+        clear();
+        refresh();
+        gameWindow->renderFull(gameWindow->winPointer);
+        doupdate();
+    }
 
     if (menu) {
         menu->recenter(screenWidth, screenHeight);

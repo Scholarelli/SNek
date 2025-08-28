@@ -42,6 +42,7 @@ public:
     void spawn() const;
     void draw();
     void render(WINDOW *win) override;
+    void renderFull(WINDOW *win);
     UiAction handleInput(controls input) override;
     void initializeWindow(WINDOW *parent) override;
     void update();

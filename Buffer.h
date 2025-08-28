@@ -37,7 +37,7 @@ public:
 
     void setTile(int x, int y, char ch, int color = 0, bool bold = false);
     Tile getTile(int x, int y) const;
-    void render(WINDOW *win, const Buffer& prevBuffer) const;
+    void render(WINDOW *win, const Buffer& prevBuffer, bool renderAll) const;
 
     void clear();
 

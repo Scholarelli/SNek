@@ -11,8 +11,8 @@ void DoubleBuffer::swapBuffer() {
 }
 
 
-void DoubleBuffer::render(WINDOW *win) {
-    backBuffer->render(win, *frontBuffer);
+void DoubleBuffer::render(WINDOW *win, bool renderAll) {
+    backBuffer->render(win, *frontBuffer, renderAll);
     swapBuffer();
 }
 
