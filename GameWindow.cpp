@@ -5,7 +5,7 @@
 
 
 void GameWindow::spawn() const {
-    buffer_->render(stdscr);
+    buffer_->render(winPointer);
 }
 
 void GameWindow::draw() {

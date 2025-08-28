@@ -31,14 +31,14 @@ void MenuBase::render(WINDOW *win) {
     }
 
 
-    wrefresh(win);
+    wnoutrefresh(win);
 }
 
 
 void MenuBase::initializeWindow(WINDOW *win) {
     winPointer = subwin(win, height, width, y, x);
     box(winPointer, 0, 0);
-    wrefresh(winPointer);
+    wnoutrefresh(winPointer);
 
 }
 
@@ -86,7 +86,7 @@ void MenuBase::recenter(int screenWidth, int screenHeight) {
     if (winPointer) {
         // Redraw the window content
         box(winPointer, 0, 0);
-        wrefresh(winPointer);
+        wnoutrefresh(winPointer);
     }
 
 }

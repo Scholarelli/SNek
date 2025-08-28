@@ -1,4 +1,5 @@
 #include "Buffer.h"
+#include <curses.h>
 
 void Buffer::setTile(int x, int y, char ch, int color, bool bold) {
     if (x >= 0 && x < width && y >= 0 && y < height) {
@@ -9,6 +10,7 @@ void Buffer::setTile(int x, int y, char ch, int color, bool bold) {
 Tile Buffer::getTile(int x, int y) const {
     return (* this)(x, y);
 }
+
 
 void Buffer::render(WINDOW *win, const Buffer &prevBuffer) const {
     box(win, 0, 0);
@@ -28,7 +30,7 @@ void Buffer::render(WINDOW *win, const Buffer &prevBuffer) const {
             wattr_off(win, attributes, nullptr);
         }
     }
-    wrefresh(win);
+    wnoutrefresh(win);
 }
 
 void Buffer::clear() {
@@ -50,5 +52,3 @@ void Buffer::resize(int x, int y) {
     grid.resize(width * height, Tile{});
     clear();
 }
-
-

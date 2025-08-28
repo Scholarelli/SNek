@@ -78,6 +78,7 @@ void WindowManager::run() {
             break;
         }
 
+        doupdate();
         switch (action) {
             case UI_NO_ACTION:
                 if (menu == nullptr && gameWindow) {
@@ -90,6 +91,8 @@ void WindowManager::run() {
                 if (gameWindow) {
                     delete gameWindow;
                 }
+                gameWidth = screenWidth;
+                gameHeight = screenHeight;
                 gameWindow = new GameWindow(screenWidth, screenHeight);
                 deleteMenu();
                 break;
@@ -122,7 +125,28 @@ void WindowManager::run() {
 
 
 void WindowManager::render() {
+    if (resizeBlocked) {
+        clear();
 
+        int msgY = screenHeight / 2;
+        int msgX = screenWidth / 2;
+
+        const char* msg1 = "Terminal size changed!";
+        const char* msg2 = "Please resize terminal back to original size to continue";
+        const char* msg3 = "Press 'q' to quit";
+        char sizeMsg[100];
+        snprintf(sizeMsg, sizeof(sizeMsg), "Required size: %dx%d, Current: %dx%d",
+                gameWidth, gameHeight, screenWidth, screenHeight);
+
+        mvprintw(msgY - 2, msgX - strlen(msg1)/2, "%s", msg1);
+        mvprintw(msgY - 1, msgX - strlen(sizeMsg)/2, "%s", sizeMsg);
+        mvprintw(msgY, msgX - strlen(msg2)/2, "%s", msg2);
+        mvprintw(msgY + 2, msgX - strlen(msg3)/2, "%s", msg3);
+
+        refresh();
+        return;
+
+    }
 
     if (gameWindow) {
         gameWindow->render(gameWindow->winPointer);
@@ -133,11 +157,15 @@ void WindowManager::render() {
 
     }
 
-    refresh();
+    doupdate();
 }
 
 void WindowManager::resize() {
+
     getmaxyx(stdscr, screenHeight, screenWidth);
+    if (gameWindow)
+        resizeBlocked = screenHeight != gameHeight || screenWidth != gameWidth;
+
     if (menu) {
         menu->recenter(screenWidth, screenHeight);
     }
@@ -154,6 +182,9 @@ UiAction WindowManager::handleInput() {
         render();
         return UI_NO_ACTION;
     }
+
+    if (resizeBlocked)
+        return UI_NO_ACTION;
 
     return focused->handleInput(input);
 }

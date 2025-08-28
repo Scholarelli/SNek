@@ -14,6 +14,8 @@ class WindowManager {
 private:
     UiWindow* focused = nullptr;
     int screenWidth, screenHeight;
+    int gameWidth = 0, gameHeight = 0;
+    bool resizeBlocked = false;
 
     MenuBase* menu = nullptr;
     GameWindow* gameWindow;
