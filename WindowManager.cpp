@@ -1,5 +1,4 @@
 #include "WindowManager.h"
-#include "SnakeMovement.h"
 #include <ncurses.h>
 #include <unistd.h> // for usleep
 #include <cstring>
@@ -115,9 +114,13 @@ void WindowManager::run() {
                 break;
             default: ;
         }
-
+        int setSpeed = 1;
+        if (gameWindow) {
+            setSpeed = gameWindow->getSpeed();
+        }
         // Control frame rate (50ms = ~20 FPS)
-        usleep(50000);
+        int ssleep = 50000/setSpeed;
+        usleep(ssleep);
     }
 
     cleanupNcurses();

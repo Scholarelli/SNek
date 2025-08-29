@@ -11,7 +11,9 @@ enum controls {
     QUIT,
     NO_INPUT,
     RESIZE,
-    FREEZE
+    FREEZE,
+    LEVEL_UP,
+    LEVEL_DOWN,
 };
 
 

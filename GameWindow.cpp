@@ -53,6 +53,14 @@ UiAction GameWindow::handleInput(controls input) {
         case MOVE_DOWN: snake->direction(0, 1); break;
         case MOVE_LEFT: snake->direction(-1, 0); break;
         case MOVE_RIGHT: snake->direction(1, 0); break;
+        case LEVEL_UP:
+            levels.nextLevel();
+            snake = std::make_unique<SnakeMovement>(*playfield_, levels.getSnakeLength());
+            break;
+        case LEVEL_DOWN:
+            levels.previousLevel();
+            snake = std::make_unique<SnakeMovement>(*playfield_, levels.getSnakeLength());
+            break;
         case FREEZE: return UI_PAUSE_GAME;
         case PAUSE: return UI_REQUEST_PAUSE;
         case QUIT: return UI_QUIT_GAME;

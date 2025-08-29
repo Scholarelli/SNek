@@ -14,6 +14,8 @@ controls get_user_input() {
         case ' ': case 'p': case 10:  return controls::PAUSE;
         case 'f': return controls::FREEZE;
         case 'q':                 return controls::QUIT;
+        case 'v': return controls::LEVEL_UP;
+        case 'c': return controls::LEVEL_DOWN;
         default:                  return controls::NO_INPUT;
     }
 }
