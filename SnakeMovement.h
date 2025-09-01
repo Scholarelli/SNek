@@ -26,6 +26,7 @@
         SnakeMovement(SnakePlayfield& playfield, int levelLength);
         void direction(int x, int y);
         void step();
+        XYposition getHead() {return snake[0];};
 
     };
 

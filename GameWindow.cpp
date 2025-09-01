@@ -74,6 +74,17 @@ void GameWindow::initializeWindow(WINDOW *parent) {
 }
 
 void GameWindow::update() {
+    time_t now = time(nullptr);
+    int diff = (int)(now - lastUpdate);
+    if (diff > 0) {
+        timeDone += diff;
+        lastUpdate = now;
+    }
     snake->step();
+    if (playfield_->isFoodAt(snake->getHead().x, snake->getHead().y)) {
+        score += levels.getFruitBonus();
+        timeTot += levels.getFruitBonus();
+
+    }
     updateBuffer();
 }

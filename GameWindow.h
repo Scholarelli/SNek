@@ -12,6 +12,7 @@
 #include "SnakeMovement.h"
 #include "Levels.h"
 #include <memory>
+#include <ctime>
 
 class GameWindow : public UiWindow {
 private:
@@ -19,7 +20,13 @@ private:
     std::unique_ptr<DoubleBuffer> buffer_;
     std::unique_ptr<SnakeMovement> snake;
     Levels levels;
+
     int score;
+    time_t start;
+    time_t lastUpdate;
+    int timeTot;
+    int timeDone;
+
     void updateBuffer() const;
 
 public:
@@ -27,7 +34,7 @@ public:
         : UiWindow(0, 0, width, height),
           playfield_(std::make_unique<SnakePlayfield>(width -3 , height -3)),
           buffer_(std::make_unique<DoubleBuffer>(width -3, height -3)),
-          score(0) {
+          score(0), timeTot(60), timeDone(0), start(time(nullptr)), lastUpdate(time(nullptr)) {
 
         levels.addLevel(1, 0, 10, 1, 5, 100);
         levels.addLevel(2, 0, 20, 2, 5, 100);
