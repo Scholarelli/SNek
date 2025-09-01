@@ -11,6 +11,11 @@
     struct XYposition {
         int x, y;
     };
+    enum stepResult {
+        game_over,
+        ate,
+        nothing
+    };
 
     class SnakeMovement {
     private:
@@ -25,7 +30,7 @@
 
         SnakeMovement(SnakePlayfield& playfield, int levelLength);
         void direction(int x, int y);
-        void step();
+        stepResult step();
         XYposition getHead() {return snake[0];};
 
     };

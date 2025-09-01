@@ -28,14 +28,14 @@ void SnakeMovement::direction(int x, int y) {
     moveY = y;
 }
 
-void SnakeMovement::step() {
+stepResult SnakeMovement::step() {
     int newX = (snake[0].x + moveX + playfield.getWidth()) % playfield.getWidth();
     int newY = (snake[0].y + moveY + playfield.getHeight()) % playfield.getHeight();
 
     //collisione, nuova pos è uguale a pezzo di snake
    for (int i = 0; i < snakeLength; i++) {
        if (snake[i].x == newX && snake[i].y == newY) {
-           return;
+           return game_over;
        }
    }
 
@@ -57,6 +57,8 @@ void SnakeMovement::step() {
 
     if (growing) {
         playfield.spawnFood();
+        return ate;
     }
+    return nothing;
 
 }
