@@ -13,7 +13,7 @@ private:
         int timeDone;
         int snakeLength;
         int snakeSpeed;
-        int bonus;
+        int fruitBonus;
         int timeBonus;
         Node* next;
         Node* prev;
@@ -36,7 +36,7 @@ public:
     int getTimeDone() { return current ? current->timeDone : 0; }
     int getSnakeLength() { return current ? current->snakeLength : 1; }
     int getSnakeSpeed() { return current ? current->snakeSpeed : 1; }
-    int getFruitBonus() { return current ? current->bonus : 0; }
+    int getFruitBonus() { return current ? current->fruitBonus : 0; }
     int getTimeBonus() { return current ? current->timeBonus : 0; }
 
     //void addTime();

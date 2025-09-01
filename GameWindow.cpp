@@ -17,6 +17,7 @@ void GameWindow::draw() {
 void GameWindow::render(WINDOW *win) {
      buffer_->render(win);
     //wprintw(win, "GAME RENDERED");
+    //int remaining = timeTot - timeDone;
 }
 
 void GameWindow::renderFull(WINDOW *win) {
@@ -80,10 +81,11 @@ void GameWindow::update() {
         timeDone += diff;
         lastUpdate = now;
     }
-    snake->step();
-    if (playfield_->isFoodAt(snake->getHead().x, snake->getHead().y)) {
+    stepResult res = snake->step();
+    if (res == ate) {
         score += levels.getFruitBonus();
-        timeTot += levels.getFruitBonus();
+        timeTot += levels.getTimeBonus();
+    }else if (res == game_over) {
 
     }
     updateBuffer();

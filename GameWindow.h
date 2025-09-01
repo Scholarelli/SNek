@@ -36,9 +36,9 @@ public:
           buffer_(std::make_unique<DoubleBuffer>(width -3, height -3)),
           score(0), timeTot(60), timeDone(0), start(time(nullptr)), lastUpdate(time(nullptr)) {
 
-        levels.addLevel(1, 0, 10, 1, 5, 100);
-        levels.addLevel(2, 0, 20, 2, 5, 100);
-        levels.addLevel(3, 0, 30, 10, 5, 100);
+        levels.addLevel(1, 0, 10, 1, 5, 3);
+        levels.addLevel(2, 0, 20, 2, 7, 5);
+        levels.addLevel(3, 0, 30, 10, 10, 10);
         snake = std::make_unique<SnakeMovement>(*playfield_, levels.getSnakeLength());
 
         winPointer = newwin(height -1, width -1, 0, 0);
