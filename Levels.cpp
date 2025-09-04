@@ -15,8 +15,8 @@ Levels::~Levels() {
 }
 
 
-void Levels::addLevel(int l, int tD, int sL, int sS, int b, int tB) {
-    Node* newLevel= new Node{l, tD, sL, sS, b, tB, nullptr, nullptr};
+void Levels::addLevel(int l, int tD, int sL, int sS, int b, int tB, int B) {
+    Node* newLevel= new Node{l, tD, sL, sS, b, tB, B, nullptr, nullptr};
     if (root == nullptr) {
         root = newLevel;
         current = root;

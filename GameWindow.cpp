@@ -66,12 +66,14 @@ UiAction GameWindow::handleInput(controls input) {
             if (levels.nextLevel()) {
                 delete snake;
                 snake = new SnakeMovement(*playfield_, levels.getSnakeLength());
+                fruitCounter = 0;
             }
             break;
         case LEVEL_DOWN:
             if (levels.previousLevel()) {
                 delete snake;
                 snake = new SnakeMovement(*playfield_, levels.getSnakeLength());
+                fruitCounter = 0;
             }
             break;
         case FREEZE: return UI_PAUSE_GAME;
@@ -106,6 +108,12 @@ void GameWindow::update() {
     if (res == ate) {
         score += levels.getFruitBonus();
         timeTot += levels.getTimeBonus();
+        fruitCounter++;
+        if (fruitCounter >= 10 && levelBonus[levels.getLevel()] == false) {
+            score += levels.getBonus();
+            levelBonus[levels.getLevel()] = true;
+            fruitCounter = 0;
+        }
     }else if (res == game_over) {
         gameOver = true;
     }

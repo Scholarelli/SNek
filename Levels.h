@@ -15,6 +15,7 @@ private:
         int snakeSpeed;
         int fruitBonus;
         int timeBonus;
+        int bonus;
         Node* next;
         Node* prev;
     };
@@ -24,17 +25,17 @@ private:
 
 public:
     Levels() : root(nullptr), current(nullptr) {
-        addLevel(1, 0, 5, 2, 5, 25);
-        addLevel(2, 0, 8, 4, 10, 22);
-        addLevel(3, 0, 10, 6, 15, 20);
-        addLevel(4, 0, 15, 8, 20, 18);
-        addLevel(5, 0, 20, 10, 50, 13);
-        addLevel(6, 0, 30, 20, 100, 10);
-        addLevel(7, 0, 30, 30, 500, 7);
+        addLevel(1, 0, 5, 2, 5, 25, 15);
+        addLevel(2, 0, 8, 4, 10, 22, 30);
+        addLevel(3, 0, 15, 6, 15, 20, 45);
+        addLevel(4, 0, 25, 8, 20, 18, 60);
+        addLevel(5, 0, 32, 10, 50, 13, 75);
+        addLevel(6, 0, 40, 20, 100, 10, 90);
+        addLevel(7, 0, 50, 25, 500, 7, 105);
     }
     ~Levels();
 
-    void addLevel(int l, int tD, int sL, int sS, int b, int tB);
+    void addLevel(int l, int tD, int sL, int sS, int b, int tB, int B);
 
     bool nextLevel();
 
@@ -47,6 +48,7 @@ public:
     int getSnakeSpeed() { return current ? current->snakeSpeed : 1; }
     int getFruitBonus() { return current ? current->fruitBonus : 0; }
     int getTimeBonus() { return current ? current->timeBonus : 0; }
+    int getBonus() { return current ? current->bonus : 0; }
 
     //void addTime();
 

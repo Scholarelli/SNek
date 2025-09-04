@@ -26,6 +26,8 @@ private:
     int timeTot;
     int timeDone;
     bool gameOver;
+    bool levelBonus[7];
+    int fruitCounter;
     bool paused;
 
     void updateBuffer() const;
@@ -33,8 +35,10 @@ private:
 public:
     GameWindow(int width, int height)
         : UiWindow(0, 0, width, height),
-          score(0), timeTot(10), timeDone(0), gameOver(false), paused(false), start(time(nullptr)), lastUpdate(time(nullptr)) {
-
+          score(0), timeTot(10), timeDone(0), gameOver(false), start(time(nullptr)), lastUpdate(time(nullptr)), paused(false), fruitCounter(0){
+        for (int i = 0; i < 7; i++) {
+            levelBonus[i] = false;
+        }
         playfield_ = new SnakePlayfield(width -3 , height -3);
         buffer_ = new DoubleBuffer(width -3, height -3);
         snake = new SnakeMovement(*playfield_, levels.getSnakeLength());
