@@ -1,4 +1,5 @@
 #include "WindowManager.h"
+#include "LBscores.h"
 #include <ncurses.h>
 #include <unistd.h> // for usleep
 #include <cstring>
@@ -56,22 +57,20 @@ void WindowManager::createLeaderboardMenu() {
     if (gameWindow) {
         chosenWindow = gameWindow->winPointer;
     }
+    LBscores LB;
+    const int MAX = 30;
+    partita punteggi[MAX];
+    int num = LB.loadScore("scores.txt", punteggi, MAX);
 
-    // Create placeholder leaderboard data (in the future, this would be read from file)
-    static LeaderboardMenu::LeaderboardEntry leaderboardData[] = {
-        {1, 2500},
-        {2, 2100},
-        {3, 1850},
-        {4, 1600},
-        {5, 1400},
-        {6, 1200},
-        {7, 1000},
-        {8, 800}
-    };
-    int numEntries = sizeof(leaderboardData) / sizeof(leaderboardData[0]);
 
-    int dynamicHeight = LeaderboardMenu::calculateHeight(numEntries);
-    menu = new LeaderboardMenu(screenWidth / 2 - 32/2, screenHeight / 2 - dynamicHeight/2, leaderboardData, numEntries);
+    static LeaderboardMenu::LeaderboardEntry entries[MAX];
+    for (int i = 0; i < num; i++) {
+        entries[i].gameId = i + 1;
+        entries[i].score = punteggi[i].punt;
+    }
+
+    int dynamicHeight = LeaderboardMenu::calculateHeight(num);
+    menu = new LeaderboardMenu(screenWidth / 2 - 32/2, screenHeight / 2 - dynamicHeight/2, entries, num);
 
     if (menu) {
         menu->initializeWindow(chosenWindow);
@@ -125,6 +124,13 @@ void WindowManager::run() {
                 if (menu == nullptr && gameWindow) {
                     gameWindow->update();
                     if (gameWindow->isGameOver()) {
+                        LBscores LB;
+                        partita tmp[30];
+                        int ora = LB.loadScore("scores.txt", tmp, 30);
+                        char nome[20];
+                        snprintf(nome, sizeof(nome), "Partita%d", ora + 1);
+                        LB.saveScore("scores.txt", nome, gameWindow->getScore());
+
                         createGameOverMenu();
                     }
                 } else if (menu != nullptr && gameWindow) {
