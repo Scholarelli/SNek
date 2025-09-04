@@ -23,6 +23,10 @@ add_executable(SNek main.cpp
 
         Menu/MainMenu.cpp
 
+        Menu/GameOverMenu.cpp
+
+        Menu/LeaderboardMenu.cpp
+
         WindowManager.cpp
 
 
@@ -33,4 +37,4 @@ add_executable(SNek main.cpp
 
 )
 #target_link_libraries(SNek ${CURSES_LIBRARIES})
-target_link_libraries(SNek ${CURSES_LIBRARIES} tinfo)
+target_link_libraries(SNek ${CURSES_LIBRARIES})

@@ -93,12 +93,19 @@ void GameWindow::update() {
         timeDone += diff;
         lastUpdate = now;
     }
+
+    // Check if time has run out
+    if (timeDone >= timeTot) {
+        gameOver = true;
+        return;
+    }
+
     stepResult res = snake->step();
     if (res == ate) {
         score += levels.getFruitBonus();
         timeTot += levels.getTimeBonus();
     }else if (res == game_over) {
-
+        gameOver = true;
     }
     updateBuffer();
 }

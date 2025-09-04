@@ -67,8 +67,8 @@ CMAKE_BINARY_DIR = /Users/eslacker/CLionProjects/SNek
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "No interactive CMake dialog available..."
-	/Users/eslacker/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
+	/opt/homebrew/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -200,6 +200,78 @@ GameWindow.s: GameWindow.cpp.s
 GameWindow.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/GameWindow.cpp.s
 .PHONY : GameWindow.cpp.s
+
+Levels.o: Levels.cpp.o
+.PHONY : Levels.o
+
+# target to build an object file
+Levels.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/Levels.cpp.o
+.PHONY : Levels.cpp.o
+
+Levels.i: Levels.cpp.i
+.PHONY : Levels.i
+
+# target to preprocess a source file
+Levels.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/Levels.cpp.i
+.PHONY : Levels.cpp.i
+
+Levels.s: Levels.cpp.s
+.PHONY : Levels.s
+
+# target to generate assembly for a file
+Levels.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/Levels.cpp.s
+.PHONY : Levels.cpp.s
+
+Menu/GameOverMenu.o: Menu/GameOverMenu.cpp.o
+.PHONY : Menu/GameOverMenu.o
+
+# target to build an object file
+Menu/GameOverMenu.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/Menu/GameOverMenu.cpp.o
+.PHONY : Menu/GameOverMenu.cpp.o
+
+Menu/GameOverMenu.i: Menu/GameOverMenu.cpp.i
+.PHONY : Menu/GameOverMenu.i
+
+# target to preprocess a source file
+Menu/GameOverMenu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/Menu/GameOverMenu.cpp.i
+.PHONY : Menu/GameOverMenu.cpp.i
+
+Menu/GameOverMenu.s: Menu/GameOverMenu.cpp.s
+.PHONY : Menu/GameOverMenu.s
+
+# target to generate assembly for a file
+Menu/GameOverMenu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/Menu/GameOverMenu.cpp.s
+.PHONY : Menu/GameOverMenu.cpp.s
+
+Menu/LeaderboardMenu.o: Menu/LeaderboardMenu.cpp.o
+.PHONY : Menu/LeaderboardMenu.o
+
+# target to build an object file
+Menu/LeaderboardMenu.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/Menu/LeaderboardMenu.cpp.o
+.PHONY : Menu/LeaderboardMenu.cpp.o
+
+Menu/LeaderboardMenu.i: Menu/LeaderboardMenu.cpp.i
+.PHONY : Menu/LeaderboardMenu.i
+
+# target to preprocess a source file
+Menu/LeaderboardMenu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/Menu/LeaderboardMenu.cpp.i
+.PHONY : Menu/LeaderboardMenu.cpp.i
+
+Menu/LeaderboardMenu.s: Menu/LeaderboardMenu.cpp.s
+.PHONY : Menu/LeaderboardMenu.s
+
+# target to generate assembly for a file
+Menu/LeaderboardMenu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/Menu/LeaderboardMenu.cpp.s
+.PHONY : Menu/LeaderboardMenu.cpp.s
 
 Menu/MainMenu.o: Menu/MainMenu.cpp.o
 .PHONY : Menu/MainMenu.o
@@ -411,6 +483,15 @@ help:
 	@echo "... GameWindow.o"
 	@echo "... GameWindow.i"
 	@echo "... GameWindow.s"
+	@echo "... Levels.o"
+	@echo "... Levels.i"
+	@echo "... Levels.s"
+	@echo "... Menu/GameOverMenu.o"
+	@echo "... Menu/GameOverMenu.i"
+	@echo "... Menu/GameOverMenu.s"
+	@echo "... Menu/LeaderboardMenu.o"
+	@echo "... Menu/LeaderboardMenu.i"
+	@echo "... Menu/LeaderboardMenu.s"
 	@echo "... Menu/MainMenu.o"
 	@echo "... Menu/MainMenu.i"
 	@echo "... Menu/MainMenu.s"

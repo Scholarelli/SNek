@@ -37,6 +37,34 @@ void WindowManager::createMenu() {
     }
 }
 
+void WindowManager::createGameOverMenu() {
+    WINDOW* chosenWindow = stdscr;
+    if (gameWindow) {
+        chosenWindow = gameWindow->winPointer;
+    }
+
+    menu = new GameOverMenu(screenWidth / 2 - 30/2, screenHeight / 2 - 12/2);
+
+    if (menu) {
+        menu->initializeWindow(chosenWindow);
+        focused = menu;
+    }
+}
+
+void WindowManager::createLeaderboardMenu() {
+    WINDOW* chosenWindow = stdscr;
+    if (gameWindow) {
+        chosenWindow = gameWindow->winPointer;
+    }
+
+    menu = new LeaderboardMenu(screenWidth / 2 - 32/2, screenHeight / 2 - 16/2);
+
+    if (menu) {
+        menu->initializeWindow(chosenWindow);
+        focused = menu;
+    }
+}
+
 void WindowManager::deleteMenu() {
     if (!menu) return;
     delete menu;
@@ -82,6 +110,9 @@ void WindowManager::run() {
             case UI_NO_ACTION:
                 if (menu == nullptr && gameWindow) {
                     gameWindow->update();
+                    if (gameWindow->isGameOver()) {
+                        createGameOverMenu();
+                    }
                 } else if (menu != nullptr && gameWindow) {
                     gameWindow->draw();
                 }
@@ -111,6 +142,9 @@ void WindowManager::run() {
                     cleanupNcurses();
                     return;
                 }
+                break;
+            case UI_SHOW_LEADERBOARD:
+                createLeaderboardMenu();
                 break;
             default: ;
         }

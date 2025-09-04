@@ -2,6 +2,8 @@
 //#include "GameState.h"
 #include "Menu/MainMenu.h"
 #include "Menu/PauseMenu.h"
+#include "Menu/GameOverMenu.h"
+#include "Menu/LeaderboardMenu.h"
 #include "GameWindow.h"
 #include "controls.h"
 #include "SnakeMovement.h"
@@ -28,6 +30,8 @@ public:
     void initialize();
 
     void createMenu();
+    void createGameOverMenu();
+    void createLeaderboardMenu();
 
     void deleteMenu();
 
