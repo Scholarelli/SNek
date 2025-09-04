@@ -4,6 +4,7 @@
 
 #include "Levels.h"
 
+
 Levels::~Levels() {
     Node* tmp = root;
     while (tmp != nullptr) {
@@ -29,14 +30,18 @@ void Levels::addLevel(int l, int tD, int sL, int sS, int b, int tB) {
     }
 }
 
-void Levels::nextLevel() {
+bool Levels::nextLevel() {
     if (current != nullptr && current->next != nullptr) {
         current = current->next;
+        return true;
     }
+    return false;
 }
 
-void Levels::previousLevel() {
+bool Levels::previousLevel() {
     if (current != nullptr && current->prev != nullptr) {
         current = current->prev;
+        return true;
     }
+    return false;
 }

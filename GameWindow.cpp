@@ -15,9 +15,18 @@ void GameWindow::draw() {
 }
 
 void GameWindow::render(WINDOW *win) {
-     buffer_->render(win);
-    //wprintw(win, "GAME RENDERED");
-    //int remaining = timeTot - timeDone;
+    buffer_->render(win);
+
+    int maxY = getmaxy(win);
+    int maxX = getmaxx(win);
+
+    int remaining = timeTot - timeDone;
+    mvwprintw(win, maxY - 1, 1, "Score: %d | Time: %d/%d", score, remaining, timeTot);
+
+    mvwprintw(win, maxY - 1, maxX - 10, "Level: %d",levels.getLevel());
+
+
+    wnoutrefresh(win);
 }
 
 void GameWindow::renderFull(WINDOW *win) {

@@ -23,13 +23,22 @@ private:
     Node* current;
 
 public:
-    Levels() : root(nullptr), current(nullptr) {}
+    Levels() : root(nullptr), current(nullptr) {
+        addLevel(1, 0, 5, 2, 5, 3);
+        addLevel(2, 0, 8, 4, 7, 5);
+        addLevel(3, 0, 10, 6, 10, 10);
+        addLevel(4, 0, 15, 8, 12, 12);
+        addLevel(5, 0, 20, 10, 15, 15);
+        addLevel(6, 0, 30, 20, 20, 18);
+        addLevel(7, 0, 50, 40, 25, 20);
+    }
     ~Levels();
 
     void addLevel(int l, int tD, int sL, int sS, int b, int tB);
 
-    void nextLevel();
-    void previousLevel();
+    bool nextLevel();
+
+    bool previousLevel();
 
 
     int getLevel() { return current ? current->level : 0; }
