@@ -30,7 +30,7 @@ public:
         addLevel(4, 0, 15, 8, 20, 18);
         addLevel(5, 0, 20, 10, 50, 13);
         addLevel(6, 0, 30, 20, 100, 10);
-        addLevel(7, 0, 50, 40, 500, 7);
+        addLevel(7, 0, 30, 30, 500, 7);
     }
     ~Levels();
 
