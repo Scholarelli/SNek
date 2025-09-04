@@ -5,27 +5,23 @@ void LeaderboardMenu::render(WINDOW *win) {
     wclear(win);
     box(win, 0, 0);
 
-    // Title
     mvwprintw(win, 1, width/2 - 6, "LEADERBOARD");
     
-    // Headers
-    mvwprintw(win, 3, 2, "Rank  Name          Score");
+    mvwprintw(win, 3, 2, "Rank  Game          Score");
     mvwprintw(win, 4, 2, "------------------------");
     
-    // Display leaderboard entries
-    for (int i = 0; i < 8; ++i) {
-        mvwprintw(win, 5 + i, 2, " %2d   %-12s %5d", 
+    for (int i = 0; i < entryCount; ++i) {
+        mvwprintw(win, 5 + i, 2, " %2d   Game %-7d %5d", 
                   i + 1, 
-                  leaderboard[i].name, 
-                  leaderboard[i].score);
+                  leaderboardEntries[i].gameId, 
+                  leaderboardEntries[i].score);
     }
     
-    // Separator line before menu option
-    mvwprintw(win, 13, 2, "------------------------");
+    int separatorY = 5 + entryCount;
+    mvwprintw(win, separatorY, 2, "------------------------");
     
-    // Menu option
     const char *const*entries = getEntries();
-    int entryY = 14;
+    int entryY = separatorY + 1;
     int entryX = (width - strlen(entries[0])) / 2;
     if (entryX < 0) entryX = 0;
     
@@ -42,7 +38,7 @@ void LeaderboardMenu::render(WINDOW *win) {
 
 UiAction LeaderboardMenu::getActionForIndex() {
     switch(this->selectedIndex) {
-        case 0: return UI_MAIN_MENU;  // Back to Main Menu
+        case 0: return UI_MAIN_MENU;
         default: return UI_NO_ACTION;
     }
 }

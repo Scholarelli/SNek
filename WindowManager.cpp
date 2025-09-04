@@ -57,7 +57,21 @@ void WindowManager::createLeaderboardMenu() {
         chosenWindow = gameWindow->winPointer;
     }
 
-    menu = new LeaderboardMenu(screenWidth / 2 - 32/2, screenHeight / 2 - 16/2);
+    // Create placeholder leaderboard data (in the future, this would be read from file)
+    static LeaderboardMenu::LeaderboardEntry leaderboardData[] = {
+        {1, 2500},
+        {2, 2100},
+        {3, 1850},
+        {4, 1600},
+        {5, 1400},
+        {6, 1200},
+        {7, 1000},
+        {8, 800}
+    };
+    int numEntries = sizeof(leaderboardData) / sizeof(leaderboardData[0]);
+
+    int dynamicHeight = LeaderboardMenu::calculateHeight(numEntries);
+    menu = new LeaderboardMenu(screenWidth / 2 - 32/2, screenHeight / 2 - dynamicHeight/2, leaderboardData, numEntries);
 
     if (menu) {
         menu->initializeWindow(chosenWindow);
