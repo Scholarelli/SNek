@@ -66,7 +66,9 @@ void WindowManager::createLeaderboardMenu() {
         {5, 1400},
         {6, 1200},
         {7, 1000},
-        {8, 800}
+        {8, 1000},
+        {9, 800},
+        {10, 800}
     };
     int numEntries = sizeof(leaderboardData) / sizeof(leaderboardData[0]);
 
@@ -122,7 +124,7 @@ void WindowManager::run() {
         doupdate();
         switch (action) {
             case UI_NO_ACTION:
-                if (menu == nullptr && gameWindow) {
+                if (menu == nullptr && gameWindow && !resizeBlocked) {
                     gameWindow->update();
                     if (gameWindow->isGameOver()) {
                         createGameOverMenu();
@@ -218,6 +220,18 @@ void WindowManager::resize() {
     bool wasBlocked = resizeBlocked;
     if (gameWindow)
         resizeBlocked = screenHeight != gameHeight || screenWidth != gameWidth;
+
+    // Handle timer pause/resume based on resize blocking
+    if (gameWindow) {
+        if (!wasBlocked && resizeBlocked) {
+            // Just became blocked - pause the timer
+            gameWindow->pauseTimer();
+        } else if (wasBlocked && !resizeBlocked) {
+            // Just became unblocked - resume the timer
+            gameWindow->resumeTimer();
+        }
+    }
+
     if (wasBlocked && !resizeBlocked && gameWindow) {
         clear();
         refresh();

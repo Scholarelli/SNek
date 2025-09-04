@@ -26,13 +26,14 @@ private:
     int timeTot;
     int timeDone;
     bool gameOver;
+    bool paused;
 
     void updateBuffer() const;
 
 public:
     GameWindow(int width, int height)
         : UiWindow(0, 0, width, height),
-          score(0), timeTot(10), timeDone(0), gameOver(false), start(time(nullptr)), lastUpdate(time(nullptr)) {
+          score(0), timeTot(10), timeDone(0), gameOver(false), paused(false), start(time(nullptr)), lastUpdate(time(nullptr)) {
 
         playfield_ = new SnakePlayfield(width -3 , height -3);
         buffer_ = new DoubleBuffer(width -3, height -3);
@@ -62,6 +63,8 @@ public:
     void update();
     int getSpeed(){return levels.getSnakeSpeed();};
     bool isGameOver() const { return gameOver; };
+    void pauseTimer();
+    void resumeTimer();
 };
 
 
