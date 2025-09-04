@@ -16,11 +16,7 @@ SnakePlayfield::~SnakePlayfield() {
 
 
 void SnakePlayfield::resize(int newWidth, int newHeight) {
-    // delete[] campo;
-    // width = newWidth;
-    // height = newHeight;
-    // campo = new bool[width * height];
-    // clear();
+
 }
 
 

@@ -33,6 +33,8 @@ add_executable(SNek main.cpp
         SnakeMovement.cpp
         Levels.cpp
         Levels.h
+        LBscores.cpp
+        LBscores.h
 
 
 )
