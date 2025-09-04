@@ -34,7 +34,7 @@ public:
         : UiWindow(0, 0, width, height),
           playfield_(std::make_unique<SnakePlayfield>(width -3 , height -3)),
           buffer_(std::make_unique<DoubleBuffer>(width -3, height -3)),
-          score(0), timeTot(60), timeDone(0), start(time(nullptr)), lastUpdate(time(nullptr)) {
+          score(0), timeTot(300), timeDone(0), start(time(nullptr)), lastUpdate(time(nullptr)) {
 
         snake = std::make_unique<SnakeMovement>(*playfield_, levels.getSnakeLength());
 

@@ -24,13 +24,13 @@ private:
 
 public:
     Levels() : root(nullptr), current(nullptr) {
-        addLevel(1, 0, 5, 2, 5, 3);
-        addLevel(2, 0, 8, 4, 7, 5);
-        addLevel(3, 0, 10, 6, 10, 10);
-        addLevel(4, 0, 15, 8, 12, 12);
-        addLevel(5, 0, 20, 10, 15, 15);
-        addLevel(6, 0, 30, 20, 20, 18);
-        addLevel(7, 0, 50, 40, 25, 20);
+        addLevel(1, 0, 5, 2, 5, 25);
+        addLevel(2, 0, 8, 4, 10, 22);
+        addLevel(3, 0, 10, 6, 15, 20);
+        addLevel(4, 0, 15, 8, 20, 18);
+        addLevel(5, 0, 20, 10, 50, 13);
+        addLevel(6, 0, 30, 20, 100, 10);
+        addLevel(7, 0, 50, 40, 500, 7);
     }
     ~Levels();
 
