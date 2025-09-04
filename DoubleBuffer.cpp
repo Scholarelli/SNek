@@ -7,7 +7,10 @@ void DoubleBuffer::setTile(int x, int y, char ch, int color, bool bold) const {
 }
 
 void DoubleBuffer::swapBuffer() {
-    std::swap(frontBuffer, backBuffer);
+    auto *temp = frontBuffer;
+    frontBuffer = backBuffer;
+    backBuffer = temp;
+
 }
 
 
@@ -17,7 +20,6 @@ void DoubleBuffer::render(WINDOW *win, bool renderAll) {
 }
 
 void DoubleBuffer::resize(int x, int y) {
-    frontBuffer->resize(x, y);
-    backBuffer->resize(x, y);
-
+    // frontBuffer->resize(x, y);
+    // backBuffer->resize(x, y);
 }

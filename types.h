@@ -6,6 +6,6 @@
 #define TYPES_H
 #include <array>
 
-typedef std::vector<bool> snake_playfield;
+typedef bool* snake_playfield;
 
 #endif //TYPES_H

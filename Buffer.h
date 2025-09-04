@@ -1,6 +1,5 @@
 #ifndef BUFFER_H
 #define BUFFER_H
-#include <vector>
 #include <ncurses.h>
 
 struct Tile {
@@ -22,15 +21,22 @@ struct Tile {
 class Buffer {
 private:
     int width, height;
-    std::vector<Tile> grid;
+    Tile* grid;
 
     int index(int x, int y) const {
         return y * width + x;
     }
 public:
-    Buffer(int w, int h) : width(w), height(h), grid((w * h), {' ', 0, false}) {}
+    Buffer(int w, int h) : width(w), height(h) {
+        grid = new Tile[w * h];
+        for (int i = 0; i < w * h; i++) {
+            grid[i] = {' ', 0, false};
+        }
+    }
 
-    ~Buffer() = default;
+    ~Buffer() {
+        delete[] grid;
+    }
 
     const Tile& operator()(const int x, const int y) const { return grid[index(x, y)]; }
     Tile &operator()(const int x, const int y) { return grid[index(x, y)]; }

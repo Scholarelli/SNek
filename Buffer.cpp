@@ -34,7 +34,9 @@ void Buffer::render(WINDOW *win, const Buffer &prevBuffer, bool renderAll) const
 }
 
 void Buffer::clear() {
-    std::fill(grid.begin(), grid.end(), Tile{' ', 0, false});
+    for (int i = 0; i < width * height; i++) {
+        grid[i] = {' ', 0, false};
+    }
 }
 
 int Buffer::getHeight() const {
@@ -46,9 +48,8 @@ int Buffer::getWidth() const {
 }
 
 void Buffer::resize(int x, int y) {
-    this->width = x;
-    this->height = y;
-
-    grid.resize(width * height, Tile{});
-    clear();
+    // this->width = x;
+    // this->height = y;
+    // grid.resize(width * height, Tile{});
+    // clear();
 }

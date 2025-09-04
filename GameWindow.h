@@ -11,14 +11,13 @@
 #include "UiWindow.h"
 #include "SnakeMovement.h"
 #include "Levels.h"
-#include <memory>
 #include <ctime>
 
 class GameWindow : public UiWindow {
 private:
-    std::unique_ptr<SnakePlayfield> playfield_;
-    std::unique_ptr<DoubleBuffer> buffer_;
-    std::unique_ptr<SnakeMovement> snake;
+    SnakePlayfield* playfield_;
+    DoubleBuffer* buffer_;
+    SnakeMovement* snake;
     Levels levels;
 
     int score;
@@ -32,16 +31,19 @@ private:
 public:
     GameWindow(int width, int height)
         : UiWindow(0, 0, width, height),
-          playfield_(std::make_unique<SnakePlayfield>(width -3 , height -3)),
-          buffer_(std::make_unique<DoubleBuffer>(width -3, height -3)),
           score(0), timeTot(300), timeDone(0), start(time(nullptr)), lastUpdate(time(nullptr)) {
 
-        snake = std::make_unique<SnakeMovement>(*playfield_, levels.getSnakeLength());
+        playfield_ = new SnakePlayfield(width -3 , height -3);
+        buffer_ = new DoubleBuffer(width -3, height -3);
+        snake = new SnakeMovement(*playfield_, levels.getSnakeLength());
 
         winPointer = newwin(height -1, width -1, 0, 0);
     }
 
     ~GameWindow() override {
+        delete playfield_;
+        delete buffer_;
+        delete snake;
         clear();
         refresh();
     };

@@ -1,6 +1,5 @@
 #include "GameWindow.h"
 #include "Levels.h"
-#include "types.h"
 #include <ncurses.h>
 #include <ctime>
 
@@ -53,8 +52,8 @@ void GameWindow::updateBuffer() const {
 //}
 
 void GameWindow::resize(int newWidth, int newHeight) {
-    buffer_->resize(newWidth, newHeight);
-    playfield_->resize(newWidth ,newHeight);
+    // buffer_->resize(newWidth, newHeight);
+    // playfield_->resize(newWidth ,newHeight);
 }
 
 UiAction GameWindow::handleInput(controls input) {
@@ -64,12 +63,16 @@ UiAction GameWindow::handleInput(controls input) {
         case MOVE_LEFT: snake->direction(-1, 0); break;
         case MOVE_RIGHT: snake->direction(1, 0); break;
         case LEVEL_UP:
-            if (levels.nextLevel())
-                snake = std::make_unique<SnakeMovement>(*playfield_, levels.getSnakeLength());
+            if (levels.nextLevel()) {
+                delete snake;
+                snake = new SnakeMovement(*playfield_, levels.getSnakeLength());
+            }
             break;
         case LEVEL_DOWN:
-            if (levels.previousLevel())
-                snake = std::make_unique<SnakeMovement>(*playfield_, levels.getSnakeLength());
+            if (levels.previousLevel()) {
+                delete snake;
+                snake = new SnakeMovement(*playfield_, levels.getSnakeLength());
+            }
             break;
         case FREEZE: return UI_PAUSE_GAME;
         case PAUSE: return UI_REQUEST_PAUSE;
