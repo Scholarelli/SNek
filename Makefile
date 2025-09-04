@@ -201,6 +201,30 @@ GameWindow.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/GameWindow.cpp.s
 .PHONY : GameWindow.cpp.s
 
+LBscores.o: LBscores.cpp.o
+.PHONY : LBscores.o
+
+# target to build an object file
+LBscores.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/LBscores.cpp.o
+.PHONY : LBscores.cpp.o
+
+LBscores.i: LBscores.cpp.i
+.PHONY : LBscores.i
+
+# target to preprocess a source file
+LBscores.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/LBscores.cpp.i
+.PHONY : LBscores.cpp.i
+
+LBscores.s: LBscores.cpp.s
+.PHONY : LBscores.s
+
+# target to generate assembly for a file
+LBscores.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SNek.dir/build.make CMakeFiles/SNek.dir/LBscores.cpp.s
+.PHONY : LBscores.cpp.s
+
 Levels.o: Levels.cpp.o
 .PHONY : Levels.o
 
@@ -483,6 +507,9 @@ help:
 	@echo "... GameWindow.o"
 	@echo "... GameWindow.i"
 	@echo "... GameWindow.s"
+	@echo "... LBscores.o"
+	@echo "... LBscores.i"
+	@echo "... LBscores.s"
 	@echo "... Levels.o"
 	@echo "... Levels.i"
 	@echo "... Levels.s"
