@@ -28,13 +28,15 @@ private:
     bool gameOver;
     bool levelBonus[7];
     int fruitCounter;
+    bool paused;
+
     void updateBuffer() const;
 
 public:
     GameWindow(int width, int height)
         : UiWindow(0, 0, width, height),
-          score(0), timeTot(10), timeDone(0), gameOver(false), start(time(nullptr)), lastUpdate(time(nullptr)), fruitCounter(0){
-        for (int i = 0; i < 8; i++) {
+          score(0), timeTot(10), timeDone(0), gameOver(false), start(time(nullptr)), lastUpdate(time(nullptr)), paused(false), fruitCounter(0){
+        for (int i = 0; i < 7; i++) {
             levelBonus[i] = false;
         }
         playfield_ = new SnakePlayfield(width -3 , height -3);
@@ -65,7 +67,8 @@ public:
     void update();
     int getSpeed(){return levels.getSnakeSpeed();};
     bool isGameOver() const { return gameOver; };
-    int getScore() const { return score; };
+    void pauseTimer();
+    void resumeTimer();
 };
 
 

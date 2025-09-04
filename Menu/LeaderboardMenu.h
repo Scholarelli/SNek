@@ -28,7 +28,7 @@ public:
 
     UiAction getActionForIndex() override;
     void resize(int width, int height) override;
-    
+
     static int calculateHeight(int numEntries) {
         // Title(1) + spacing(1) + headers(2) + entries(numEntries) + separator(1) + menu_option(1) + borders(2)
         return 1 + 1 + 2 + numEntries + 1 + 1 + 2;
@@ -37,7 +37,7 @@ public:
 private:
     const LeaderboardEntry* leaderboardEntries;
     int entryCount;
-    
+
     static constexpr const char* entries[1] = {
         "Back to Main Menu"
     };

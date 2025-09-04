@@ -89,11 +89,13 @@ void GameWindow::initializeWindow(WINDOW *parent) {
 }
 
 void GameWindow::update() {
-    time_t now = time(nullptr);
-    int diff = (int)(now - lastUpdate);
-    if (diff > 0) {
-        timeDone += diff;
-        lastUpdate = now;
+    if (!paused) {
+        time_t now = time(nullptr);
+        int diff = (int)(now - lastUpdate);
+        if (diff > 0) {
+            timeDone += diff;
+            lastUpdate = now;
+        }
     }
 
     // Check if time has run out
@@ -116,4 +118,13 @@ void GameWindow::update() {
         gameOver = true;
     }
     updateBuffer();
+}
+
+void GameWindow::pauseTimer() {
+    paused = true;
+}
+
+void GameWindow::resumeTimer() {
+    paused = false;
+    lastUpdate = time(nullptr);
 }
